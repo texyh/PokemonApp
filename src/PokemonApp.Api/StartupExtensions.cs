@@ -27,13 +27,6 @@ namespace PokemonApp.Api
             return services;
         }
 
-        public static IServiceCollection AddPostgresHealthCheck(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddHealthChecks()
-                .AddNpgSql(GetConnectionString(configuration));
-
-            return services;
-        }
 
         public static IServiceCollection AddFluentValidation(this IServiceCollection services)
         {
@@ -50,33 +43,6 @@ namespace PokemonApp.Api
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationCommandHandlerDecorator<,>));
 
             return services;
-        }
-
-        public static IServiceCollection AddMartenDB(this IServiceCollection services, IConfiguration configuration)
-        {
-            var connectionString = GetConnectionString(configuration);
-            var options = new StoreOptions();
-            options.Connection(connectionString);
-            //options.Events.InlineProjections.AggregateStreamsWith<>();
-            services.AddMarten(options);
-
-            return services;
-        }
-
-        private static string GetConnectionString(IConfiguration configuration)
-        {
-            var connectionStringBuilder = new NpgsqlConnectionStringBuilder
-            {
-                Host = configuration.GetValue<string>("POSTGRES_HOST"),
-                Port = int.Parse(configuration.GetValue<string>("POSTGRES_PORT", "5432")),
-                SslMode = SslMode.Prefer,
-                Username = configuration.GetValue<string>("POSTGRES_USERNAME"),
-                Password = configuration.GetValue<string>("POSTGRES_PASSWORD"),
-                Database = configuration.GetValue<string>("POSTGRES_DB_NAME"),
-                TrustServerCertificate = true
-            };
-
-            return  connectionStringBuilder.ConnectionString;
         }
     }
 }

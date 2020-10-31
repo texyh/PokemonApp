@@ -3,6 +3,7 @@ using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using PokemonApp.Api.UseCases.GetShakespeareanDescription;
 using Serilog;
 using Serilog.Events;
 using ILogger = Serilog.ILogger;
@@ -39,8 +40,7 @@ namespace PokemonApp.Api
                 })
                 .ConfigureServices(services => 
                 {
-                    services.AddPostgresHealthCheck(BuildConfiguration());
-                    services.AddMartenDB(BuildConfiguration());
+                    services.AddGetPokemonDescriptionUseCase();
                 }).UseSerilog(logger: Log.Logger);
 
         private static IConfiguration BuildConfiguration() =>

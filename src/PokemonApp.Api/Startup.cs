@@ -7,6 +7,7 @@ using ILogger = Serilog.ILogger;
 using PokemonApp.Api.Middleware;
 using MediatR;
 using PokemonApp.Application.Abstractions.Commands;
+using FluentValidation;
 
 namespace PokemonApp.Api
 {
@@ -27,7 +28,7 @@ namespace PokemonApp.Api
                 .AddFluentValidation()
                 .AddControllers();
 
-            services.AddMediatR(typeof(Startup), typeof(ICommand))
+            services.AddMediatR(typeof(ICommand))
                     .AddCommandHandlerDecorators();
 
         }
