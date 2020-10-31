@@ -28,32 +28,5 @@ jobs:
     - script: dotnet test tests/PokemonApp.UnitTests 
       displayName: Run Unit Tests
 
-    - task: DockerCompose@0
-      displayName: 'docker-compose down'
-      condition: always()
-      inputs:
-        containerregistrytype: 'Container Registry'
-        dockerComposeFile: $(dockerComposePath)
-        action: 'Run a Docker Compose command'
-        dockerComposeCommand: 'down --remove-orphans'
-      
-    - task: DockerCompose@0
-      displayName: 'docker-compose up'
-      inputs:
-        containerregistrytype: 'Container Registry'
-        dockerComposeFile: $(dockerComposePath)
-        action: 'Run a Docker Compose command'
-        dockerComposeCommand: 'up -d --build'
-
     - script: dotnet test tests/PokemonApp.IntegrationTests
       displayName: Run Integration Tests
-
-    - task: DockerCompose@0
-      displayName: 'docker-compose down'
-      condition: always()
-      inputs:
-        containerregistrytype: 'Container Registry'
-        dockerComposeFile: $(dockerComposePath)
-        action: 'Run a Docker Compose command'
-        dockerComposeCommand: 'down'
-
