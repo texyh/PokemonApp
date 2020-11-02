@@ -1,26 +1,30 @@
+## Technical Details
 
-### Folder Structure
- Folder structure consists of four separated files, first is `src` which has source files the other one is `tests` which has tests projects. There is also `cicd` and `docker`.
+### Architecture 
 
+I've used `Clean Architecture` for this project. There are four projects:
+`PokemonApp.Api` - This handles the request and response.
+`PokemonApp.Application` - This handles all application logic and all related classes reside.
+`PokemonApp.Domain` - This handles all domain objects and domain logic.
+`PokemonApp.Infrastructure` - This handle infrastructure related code, eg. Database, Integration to external serevices.
 
-### Libraries
+### Libraries 
 You can find what libraries I've used the following;
 
 - XUnit
 - FluentAssertion
 - Xbehave
-- Polly
 - Serilog
 - Swagger
-- MartenDB
 - Fluent Validation
 
  ## Build & Run
- To run the project, navigate to `src/PokemonApp.Api` folder and run `dotnet run`.
+ There are two ways you can run the application
+ 1) if you have `dotnet core` installed, to run the project, navigate to `src/PokemonApp.Api` folder and run `dotnet run`.
+ 2) You can run the application using docker as follows: 
 
- 
-You can use `Swagger` using the following to explore the api.
+    a) In the root folder, paste and excute this command `docker build -t pokemon -f docker/Dockerfile .`
+    
+    b) Then, `docker run -p 5000:5000 pokemon`
 
-- [Go to Swagger](https://localhost:5001/swagger/index.html)
-
-You will find the api details in `Swagger` documentation and test it.
+Using Either ways above, the app should be runnnig on port `5000`. Navigate to http://localhost:5000/swagger/index.html to test the api.
