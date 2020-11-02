@@ -15,7 +15,7 @@
         "POSTGRES_DB_NAME": "PokemonAppDB"
 
       },
-      "applicationUrl": "https://localhost:5001"
+      "applicationUrl": "http://localhost:5000"
     }
   }
 }
