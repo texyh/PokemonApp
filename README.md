@@ -4,11 +4,11 @@
 
 I've used `Clean Architecture` for this project. There are four projects: 
  
-`PokemonApp.Api` - This handles the request and response.
+`PokemonApp.Api` - This handles the request and response, all features are broken down into UseCases, you can find the usecase for the test in `GetShakespeareanDescription` folder.
 
-`PokemonApp.Application` - This handles all application logic and all related classes reside. 
+`PokemonApp.Application` - This handles all application logic and all related classes. 
 
-`PokemonApp.Domain` - This handles all domain objects and domain logic. 
+`PokemonApp.Domain` - This handles all domain objects and domain logic if there is any. 
 
 `PokemonApp.Infrastructure` - This handle infrastructure related code, eg. Database, Integration to external serevices. 
 
