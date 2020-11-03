@@ -1,5 +1,6 @@
 ﻿using PokeApiNet;
 using PokemonApp.Domain.Exceptions;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,9 +17,13 @@ namespace PokemonApp.Infrastructure.PokemonService
     {
         private readonly PokeApiClient _pokeApiClient;
 
-        public PokemonService(PokeApiClient pokeApiClient)
+        private readonly ILogger _logger;
+
+
+        public PokemonService(PokeApiClient pokeApiClient, ILogger logger)
         {
             _pokeApiClient = pokeApiClient;
+            _logger = logger;
         }
 
         public async Task<string> GetDescription(string name)
@@ -31,7 +36,7 @@ namespace PokemonApp.Infrastructure.PokemonService
             }
             catch (Exception e)
             {
-
+                _logger.Error($"Pokemon with name {name} was not found.");
                 throw new PokemonNotFoundException(e.Message, $"Pokemon with name {name} was not found.");
             }
 
