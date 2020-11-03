@@ -3,6 +3,7 @@
 ### Architecture 
 
 I've used `Clean Architecture` for this project. There are four projects: 
+ 
 `PokemonApp.Api` - This handles the request and response.
 
 `PokemonApp.Application` - This handles all application logic and all related classes reside. 
